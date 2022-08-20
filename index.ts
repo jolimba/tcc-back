@@ -10,7 +10,8 @@ app.use((req, res, next) => {
   next()
 })
 
-app.get('/users', user.listUsers);
+app.get('/users', user.listUsers)
+app.get('/users/:id', user.getOneUser)
 
 app.get('/', (req: Request, res: Response) => {
   return res.json({

@@ -5,6 +5,6 @@ exports.listUsers = async function(req, res) {
   user.getUsers().then(users => res.json({'users': users}))
 };
 
-exports.getOneUSer = function(req, res) {
-  res.send('oi');
+exports.getOneUser = function(req, res) {
+  user.getOneUser(req.params.id).then(user => res.json({'user': user}))
 };

@@ -3,11 +3,18 @@ import { AppDataSource } from "../data-source"
 import { Users } from "../entity/Users"
 
 export class UserRepository {
+    
     getAll = async () => {
         await AppDataSource.initialize()
-        console.log('repository')
-        let users = await AppDataSource.manager.find(Users)
-        return users
+        return AppDataSource.manager.find(Users)
+    }
+
+    getOne = async (idUser: number) => {
+        await AppDataSource.initialize()
+        return  AppDataSource.manager
+            .createQueryBuilder(Users, "user")
+            .where("user.id = :id", { id: idUser })
+            .getOne()
     }
 }
 
