@@ -23,5 +23,4 @@ export class Users {
 
     @Column()
     pwUser: string
-
 }
