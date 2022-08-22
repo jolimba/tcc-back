@@ -3,28 +3,41 @@ import { UserRepository } from "../repository/UserRepository"
 import { AppDataSource } from "../data-source"
 
 export const getUsers = async () => {
-    var users
+    let err
+    let users
     let repository = new UserRepository()
     await repository.getAll()
     .then(user => {
         users = user
         AppDataSource.destroy()
-    }).catch(error => console.log(error))
+    }).catch(error => {
+        err = error.message
+    })
+    if (err) {
+        return err
+    }
     return users
 }
 
 export const getOneUser = async (id: number) => {
-    var users
+    let err
+    let user
     let repository = new UserRepository()
     await repository.getOne(id)
-    .then(user => {
-        users = user
+    .then(getUser => {
+        user = getUser
         AppDataSource.destroy()
-    }).catch(error => console.log(error))
-    return users
+    }).catch(error => {
+        err = error.message
+    })
+    if (err) {
+        return err
+    }
+    return user
 }
 
 export const addNewUser = async (body: any) => {
+    let err
     let repository = new UserRepository()
     await repository.addNewUser(
         body.first_name,
@@ -34,12 +47,19 @@ export const addNewUser = async (body: any) => {
         body.login_user,
         body.pw_user
     )
-    AppDataSource.destroy()
+    .then(() => {
+        AppDataSource.destroy()
+    }).catch(error => {
+        err = error.message
+    })
+    if (err) {
+        return err
+    }
     return 'usuário criado'
 }
 
 export const updateUser = async (id: number, body: any) => {
-    console.log(body)
+    let err
     let repository = new UserRepository()
     await repository.updateUser(
         id,
@@ -50,14 +70,28 @@ export const updateUser = async (id: number, body: any) => {
         body.login_user,
         body.pw_user
     )
-    AppDataSource.destroy()
+    .then(() => {
+        AppDataSource.destroy()
+    }).catch(error => {
+        err = error.message
+    })
+    if (err) {
+        return err
+    }
     return 'usuário atualizado'
 }
 
 export const removeUser = async (id: number) => {
-    console.log(id)
+    let err
     let repository = new UserRepository()
     await repository.removeUser(id)
-    AppDataSource.destroy()
-    return 'removido'
+    .then(() => {
+        AppDataSource.destroy()
+    }).catch(error => {
+        err = error.message
+    })
+    if (err) {
+        return err
+    }
+    return 'usuário removido'
 }

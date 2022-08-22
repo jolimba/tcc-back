@@ -24,7 +24,7 @@ export class UserRepository {
         email_user: string,
         login_user: string,
         pw_user: string
-    ) => {
+    ) => {        
         await AppDataSource.initialize()
         const user = new Users()
         user.firstName = first_name

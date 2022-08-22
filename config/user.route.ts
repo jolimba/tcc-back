@@ -10,7 +10,7 @@ exports.getOneUser = function(req, res) {
 }
 
 exports.addNewUser = async function(req, res) {
-  user.addNewUser(req.body).then(() => res.json({'message': 'Usuário criado'}))
+  user.addNewUser(req.body).then(result => res.json({'message': result}))
 }
 
 exports.updateUser = async function(req, res) {
