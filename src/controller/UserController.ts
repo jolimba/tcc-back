@@ -3,37 +3,29 @@ import { UserRepository } from "../repository/UserRepository"
 import { AppDataSource } from "../data-source"
 
 export const getUsers = async () => {
-    let err
-    let users
+    let err, users
     let repository = new UserRepository()
     await repository.getAll()
-    .then(user => {
+    .then(async (user) => {
         users = user
-        AppDataSource.destroy()
+        await AppDataSource.destroy()
     }).catch(error => {
         err = error.message
     })
-    if (err) {
-        return err
-    }
-    return users
+    return err ? err : users
 }
 
 export const getOneUser = async (id: number) => {
-    let err
-    let user
+    let err, user
     let repository = new UserRepository()
     await repository.getOne(id)
-    .then(getUser => {
+    .then(async (getUser) => {
         user = getUser
-        AppDataSource.destroy()
+        await AppDataSource.destroy()
     }).catch(error => {
         err = error.message
     })
-    if (err) {
-        return err
-    }
-    return user
+    return err ? err : user
 }
 
 export const addNewUser = async (body: any) => {
@@ -47,15 +39,12 @@ export const addNewUser = async (body: any) => {
         body.login_user,
         body.pw_user
     )
-    .then(() => {
-        AppDataSource.destroy()
+    .then(async () => {
+        await AppDataSource.destroy()
     }).catch(error => {
         err = error.message
     })
-    if (err) {
-        return err
-    }
-    return 'usuário criado'
+    return err ? err : 'usuário criado'
 }
 
 export const updateUser = async (id: number, body: any) => {
@@ -70,28 +59,22 @@ export const updateUser = async (id: number, body: any) => {
         body.login_user,
         body.pw_user
     )
-    .then(() => {
-        AppDataSource.destroy()
+    .then(async () => {
+        await AppDataSource.destroy()
     }).catch(error => {
         err = error.message
     })
-    if (err) {
-        return err
-    }
-    return 'usuário atualizado'
+    return err ? err : 'usuário atualizado'
 }
 
 export const removeUser = async (id: number) => {
     let err
     let repository = new UserRepository()
     await repository.removeUser(id)
-    .then(() => {
-        AppDataSource.destroy()
+    .then(async () => {
+        await AppDataSource.destroy()
     }).catch(error => {
         err = error.message
     })
-    if (err) {
-        return err
-    }
-    return 'usuário removido'
+    return err ? err : 'usuário removido'
 }
