@@ -22,8 +22,8 @@
       "typeorm": "0.3.7"
    },
    "scripts": {
-      "typeorm": "typeorm-ts-node-commonjs",
       "start": "nodemon ./index.ts",
+      "typeorm": "typeorm-ts-node-commonjs",
       "postinstall": "tsc"
    }
 }
