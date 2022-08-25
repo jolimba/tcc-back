@@ -4,11 +4,11 @@ import { Users } from "./entity/Users"
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: "ec2-44-205-112-253.compute-1.amazonaws.com",
+    host: "ec2-34-247-72-29.eu-west-1.compute.amazonaws.com",
     port: 5432,
-    username: "rujkavpphfoitj",
-    password: "3b0c6e90a9233a1f2ef58bdecf547c318ee961b9de6c065b0a96facbe3876dc7",
-    database: "d8emfo88r21ds1",
+    username: "kavpacjsgspjoe",
+    password: "32c8bc0c2e4a774565f7f6f4185cb85b10f73244174f74396371e0c6a5fff578",
+    database: "d2ejnpq1c6sfup",
     synchronize: true,
     logging: false,
     entities: [Users],
