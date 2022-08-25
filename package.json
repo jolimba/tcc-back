@@ -22,8 +22,8 @@
       "typeorm": "0.3.7"
    },
    "scripts": {
-      "start": "ts-node src/index.ts",
       "typeorm": "typeorm-ts-node-commonjs",
-      "start-dev": "nodemon ./index.ts"
+      "start": "nodemon ./index.ts",
+      "postinstall": "tsc"
    }
 }
