@@ -4,13 +4,17 @@
          "es5",
          "es6"
       ],
+      "baseUrl": "./",
       "target": "es5",
+      "strict": true,
       "module": "commonjs",
       "moduleResolution": "node",
-      "outDir": "dist",
+      "outDir": "./dist",
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "sourceMap": true,
       "esModuleInterop": true,
-   }
+   },
+   "include": [
+      "./index.ts"
 }
