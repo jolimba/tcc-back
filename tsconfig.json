@@ -17,4 +17,5 @@
    },
    "include": [
       "./index.ts"
+   ]
 }
